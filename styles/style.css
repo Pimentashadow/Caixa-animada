@@ -1,0 +1,72 @@
+--root{
+  --letter:'poppins', sans-serif;
+}
+
+body{
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  background:#333;
+  font-family:var(--letter);
+}
+
+.card{
+  width:200px;
+  height:250px;
+  background-color:#000;
+  position:relative;
+  box-shadow:0px 0px 5px 2px #000;
+  cursor:pointer;
+  overflow:hidden;/*faz com que os efeitos visuais não extrapolem os limites*/
+}
+
+.card::before{/*cobriu o cartão com o background cônico*/
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-200deg);/*aqui ele está girado em -200graus*/
+    width:160%;
+    height:130%;
+    z-index:1;
+    background-image: conic-gradient(#ff00bb 0deg,#ff00bb 90deg, 
+    transparent 130deg, transparent 180deg, #4350ff 180deg,
+    #4350ff 270deg ,transparent 310deg,transparent 360deg);
+    animation:move 9s infinite;
+}
+
+@keyframes move{
+  0%{
+      transform:translate(-50%,-50%) rotate(-360deg);
+}
+  
+  100%{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+
+  
+}
+/*.card:hover::before{/*aqui ele gira em -100graus*/
+   /* transform:translate(-50%,-50%) rotate(-100deg);
+}*/
+
+.card::after{/*aqui o conteúdo "luanda" está sobre o efeito visual*/
+  content:'Luanda';
+  color:#ddd;
+  position:absolute;
+  background-color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:242px;
+  width:192px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:23px;
+  z-index:1000;
+  
+}
